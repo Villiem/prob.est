@@ -4,9 +4,8 @@
 ## Describir operadores logicos ==, >=, <=, !=, : , || , &&, %>%
 ## Explicar que es un paquete de datos, tidyverse y Dplyr 
 ## Funciones basicas: Select, Filter, Arrange, Group_by
-## Se puede ejemplificar con una base ficticia de los estudiantes 
 
-## Cuando me asegure que entienden pasamos al codigo
+
 
 install.packages(c("tidyverse", "gapminder"))
 library(gapminder)
@@ -33,10 +32,10 @@ gapminder %>% filter(coutry != "Mexico")
 gapminder %>% arrange (lifeExp)
 ## Se pueden utilizar junto a otras expresiones y desc
 
-## gapminder %>% filter (continent == "Americas", year == 2007) %>% arrange(desc(gdpPercap))
+gapminder %>% filter (continent == "Americas", year == 2007) %>% arrange(desc(gdpPercap))
 
 
-## gapminder %>% group_by(year, continent) %>% summarise(media_esperanza = mean(lifeExp))
-## gapminder(filtrame) %>% spread(key = year,value = pop)
+gapminder %>% group_by(year, continent) %>% summarise(media_esperanza = mean(lifeExp))
 
-##
+
+
