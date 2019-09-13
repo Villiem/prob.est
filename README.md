@@ -1,7 +1,6 @@
 # prob.est
 
-
-![giphy](https://user-images.githubusercontent.com/54007647/64838490-0caf6c80-d5b9-11e9-919e-32ba7ece8a3f.gif)
+![giphy](https://user-images.githubusercontent.com/54007647/64838698-f48c1d00-d5b9-11e9-82c9-04757a5d2505.gif)
 
 
 repositorio de los códigos de la clase de probabilidad y estadística
