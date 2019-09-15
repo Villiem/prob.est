@@ -45,8 +45,8 @@ gapminder %>% arrange(desc(lifeExp)) ## de Mayor a menor
 
 
 #Mutate transforma variables
-gapminder %>% mutate( pob/1000000)
-gapminder %>% mutate (pib = gpdPercap * pob)
+gapminder %>% mutate( pop/1000000)
+gapminder %>% mutate (pib = gpdPercap * pop)
 ## si la variable no existe la crea
 
 
