@@ -1,4 +1,4 @@
-# prob.est
+# Clase de Probabilidad y estadística 2020-1
 
 ![giphy](https://user-images.githubusercontent.com/54007647/64838698-f48c1d00-d5b9-11e9-82c9-04757a5d2505.gif)
 
