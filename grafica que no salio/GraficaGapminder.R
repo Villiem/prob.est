@@ -1,7 +1,8 @@
-install.packages(c("gapminder","tidyverse","gganimate","png"))
+install.packages(c("gapminder","tidyverse","gganimate","png","gifski"))
 library(gapminder)
 library(tidyverse)
 library(gganimate)
+library(gifski)
 library(png)
 gapminder <- gapminder
 gapminder2007 <- filter(gapminder, year == 2007)
