@@ -2,6 +2,7 @@ install.packages(c("gapminder","tidyverse","gganimate","png","gifski"))
 library(gapminder)
 library(tidyverse)
 library(gganimate)
+library(gifski)
 library(png)
 library(gifski)
 gapminder <- gapminder
