@@ -6,7 +6,7 @@ library(gifski)
 library(png)
 gapminder <- gapminder
 gapminder2007 <- filter(gapminder, year == 2007)
-ggplot(gapminder2007) + geom_point(aes(x = lifeExp, y = gdpPercap))
+ggplot(gapminder2007) + geom_point(aes(x = gdpPercap , y = lifeExp))
 ggplot(gapminder2007) + geom_point(aes(x = gdpPercap, y = lifeExp, color = continent))
 ggplot(gapminder2007) + geom_point(aes(x = gdpPercap, y = lifeExp, color = continent)) + labs(title = "A mayor ingreso mayor esperanza de vida", subtitle = "Para la clase de estadistica", x = "Pib per capita", y = "Esperanza de vida")
 
