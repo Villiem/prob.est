@@ -1,4 +1,4 @@
-install.packages(c("gapminder","tidyverse","gganimate","png")
+install.packages(c("gapminder","tidyverse","gganimate","png"))
 library(gapminder)
 library(tidyverse)
 library(gganimate)
