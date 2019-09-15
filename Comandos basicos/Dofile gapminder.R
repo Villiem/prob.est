@@ -65,7 +65,7 @@ gapminder %>% group_by(year, continent)
 gapminder %>% group_by(year, continent) %>% summarise(media_esperanza = mean(lifeExp))
 
 ## Que tal si queremos saber la esperanza media de vida de cada continente en cierto anio?
-gapmider %>% group_by (continent) %>% filter (year == 2007) %>% summarise(media_ingreso = mean(gdpPercap)
+gapminder %>% group_by (continent) %>% filter (year == 2007) %>% summarise(media_ingreso = mean(gdpPercap)
                                                                           
 ## Lo importante no es memorizar los comandos ni copiar y pegar, es entender que hace cada uno y moldearlo a las necesidades
 
