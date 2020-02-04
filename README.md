@@ -8,7 +8,9 @@ repositorio de los códigos de la clase de probabilidad y estadística
 Sigo subiendo contenido si les interesa
 Están los ejercicios en clase, además de los comandos básicos y una gráfica que no pude mostrar.
 
-Pronto estarán algunas gráficas y libros de como usar R.
+Material recomendado.
+
+[R for Data Science](https://r4ds.had.co.nz/)
 
 
-IMPORTANTE: SI QUIEREN SUBIR CALIFICACIÓN O TIENEN QUE REPETIR TIENEN QUE ENVIARLA EN FORMATO HTML CON EL ASUNTO Y NO PUEDEN COPIAR EL GINI.
+[YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/)
