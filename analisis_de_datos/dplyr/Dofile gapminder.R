@@ -1,4 +1,4 @@
-## Analisis de datos con R, empieza lo weno 
+## Analisis de datos con R, empieza lo bueno. 
 ## Esta es una de las cosas mas utiles e importantes para los economistas, vamos por partes
 ## Describir los tipos de datos, Int, Double, Boolean, factor, String
 ## Describir operadores logicos ==, >=, <=, !=, : , || , &&, %>%
