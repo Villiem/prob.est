@@ -8,7 +8,7 @@ rango <- 11000-2000
 ##  Tenemos dos opciones para la marca de clase, usar la calculadora de r o una funcion donde solamente ponemos n
 ## Como queremos la solucion mas universal posible haremos una funcion
 f_marca_clase <- function(r,n) {
-  intervalo <- r/(1+(3.3*log10(n)))
+  intervalo <- r/(ceiling(1+(3.3*log10(n))))
   return(intervalo)
 }
 ## Donde r es el rango y n el total de observaciones
@@ -24,7 +24,7 @@ clase
 marca_clase <- seq(valor_min+intervalo/2, valor_max-intervalo/2, intervalo)
 marca_clase
 ## Tenemos todo para hacer el corte y crear el dataframe
-xi <- cut(ingreso, breaks = clase)
+xi <- cut(ingreso, breaks = clase, include.lowest = T)
 yi <- table(xi)
 df <- data.frame(yi)
 df
