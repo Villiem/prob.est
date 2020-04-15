@@ -1,0 +1,49 @@
+---
+title: "ObtenerdDatosWB"
+author: "Emiliano Villicaña"
+date: "4/14/2020"
+output: html_document
+
+```{r, echo = T, results = 'hide'}
+
+## Una manera muy ineficiente de verificar si estan o no instalados e instalarlos en caso de que no.
+lista <- c('wbstats', 'tidyverse')
+for(i in lista){
+  if(! i %in% installed.packages()){
+    install.packages(i, dependendcies = T)
+  }
+  require(i)
+}
+library(wbstats)
+library(tidyverse)
+library(knitr)
+```
+
+## Obtener datos de Banco Mundial (Pequeño ejemplo)
+Para obtener datos de WB utilizaremos una API.
+
+```{r}
+gdp <- wbsearch(pattern = 'GDP per capita', fields = 'indicator')
+head(gdp)
+```
+Encontramos que nuestra variable a buscar y la ponemos en una variable nueva porque es una buena práctica si quieres buscar otra después.
+
+```{r}
+variable_a_buscar <- 'NY.GDP.PCAP.CD'
+
+```
+
+La descargamos para México, EUA y Canadá
+
+```{r}
+pib <- wb(country = c('MX','US','CA'), indicator = variable_a_buscar, startdate = 1960, enddate = 2019)
+```
+
+Y creamos una gráfica sencilla
+
+```{r}
+pib %>% 
+  mutate(date = as.numeric(date)) %>% 
+  ggplot(aes(x = date, y = value, col = country)) + geom_line() + geom_smooth()
+```
+
