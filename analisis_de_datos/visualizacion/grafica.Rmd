@@ -69,5 +69,30 @@ ggplot(comparacion, aes(x = date, y = value, col = country)) +
   theme(legend.position = 'top') + ## tema para la posicion
   scale_y_continuous(breaks = seq(8000, 12000, 1000)) # la escala de las y
 ```
+Ahora haremos el ciclo for.
+```{r}
+gdp <- as_tibble(gdp) ##Transformamos a tibble
+```
+Como existen regiones y países, nos quedaremos solo con los países
 
-Proximamente verémos como hacer una mejor gráfica.
+```{r}
+which(gdp$country%in%'Afghanistan')
+
+solo_regiones <- gdp[-(1311:6907),]
+solo_paises <- gdp[1311:6907,]
+
+paises <- unique(solo_paises$country)
+
+```
+Hacemos el ciclo solo para 10 países
+```{r}
+for (i in paises[1:10]) {
+  df <- filter(gdp, country == i)
+  print(ggplot(df, aes(x = date, y = value)) + geom_line() +
+    theme_economist_white() + labs(title = paste('Pib per capita de : ',i),
+                                   subtitle = 'PPC en dólares a precios constantes de 2010',
+                                   caption = 'Elaboracion con datos de BM',
+                                   x = 'Años', ## estoy cambiando las x a años
+                                   y = 'PIB per Capita'))
+}
+```
