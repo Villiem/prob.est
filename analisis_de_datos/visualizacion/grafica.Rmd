@@ -4,7 +4,7 @@ author: "Emiliano Villicaña"
 date: "4/30/2020"
 output: html_document
 ---
-Haremos algunas gráficas, para ello necesitaremos 3 librerias.
+Haremos algunas gráficas, para ello necesitaremos 3 bibliotecas.
 quita el # si tienes problemas
 ```{r, echo=FALSE}
 
