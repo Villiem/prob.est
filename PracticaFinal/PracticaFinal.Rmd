@@ -1,0 +1,106 @@
+---
+documentclass: jss
+author:
+  - name: Emiliano Villicaña García
+    affiliation: UNAM FE
+    email: \email{villiem@ciencias.unam.mx}
+    url: github.com/villiem
+  - name: Eduardo Aguilar Vázquez
+    affiliation: UNAM FE
+title:
+  formatted: "Proyecto Final"
+  # If you use tex in the formatted title, also supply version without
+  plain:     "Proyecto Final"
+  # For running headers, if needed
+  short:     "Probabilidad y Estadística 2020-2"
+preamble: >
+  \usepackage{amsmath}
+output: rticles::jss_article
+---
+
+# Instrucciones
+
+##El proyecto constará de dos partes con una duración de una semana respectivamente. Para la primera parte deberán elegir una pregunta, misma que se responderá a través de los datos de instancias oficiales. Así como crear una gráfica sencilla que represente la pregunta que eligieron. Para la segunda parte, harán la presentaciónn de su pantalla y nos describirán su código.  Veamos las instrucciones de la Parte 1:
+
+## Deberás responder una pregunta de tu interés, la cual deberá sustentarse con datos de instancias oficiales. Algunos ejemplos son: 
+
+\begin{itemize}
+\item ¿Cuánto creció el desempleo?
+\item ¿Cuál fue el número de contagiados de COVID-19 en el mes de Marzo?
+\item ¿Qué producto se vende más en el negocio de mis papás?
+\item ¿Cuál es el país con menor brecha de género?
+\end{itemize}
+
+
+## Necesitarás que existan datos e importarlos.
+
+Recuerden la importancia del manejo de datos, siempre los vamos a necesitar para trabajar, es nuestra herramienta para darle vida a la teoría, por ello es recomendable que sepan dónde encontrar rapidamente la información y que tenga un formato sencillo (.xlsx, .csv, .txt) o de la API de Banco Mundial.
+
+## Describir sus datos y hacer transformaciones
+
+Una vez que tengan los datos deberán describirlos contestando las siguientes preguntas:
+\begin{itemize}
+\item ¿Cuántos datos tengo?
+\item ¿Qué tipo de variables son?
+\item ¿Están en el formato correcto?
+\item ¿Tengo errores de captura o datos imposibles?
+\end{itemize}
+
+Dependiendo de su pregunta necesitarán crear variables, agrupar, filtrar, obtener estadística descriptiva, etc.
+
+## Realicen una gráfica sencilla
+Dependiendo del tipo de relación o variables que tengan, deberán elegir la gráfica que mejor represente su pregunta.
+
+
+
+# Ejemplo. 
+Este será uno sencillo, es recomendable empezar con información que ya sabemos para validar el procedimiento. ¿Cuántos confirmados tenemos de COVID-19 al día de hoy? Sabemos que hay 71,105 veremos si concuerda.
+
+
+
+
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(covidMex)
+```
+
+
+```{r}
+df <- covidOfficialMx()
+df %>%
+  filter(RESULTADO == 'Positivo a SARS-CoV-2') %>% ## Esto debería ser una etiqueta como 1,2,3
+  tally()
+```
+
+Como el dato concuerda podemos adentrarnos más.
+De los confirmados ¿Cuántos son hombres y cuántos son mujeres?
+
+```{r}
+df %>%
+  filter(RESULTADO == 'Positivo a SARS-CoV-2') %>% ## De verdad, esto debería ser una etiqueta como 1,2,3
+  group_by(SEXO) %>%
+  tally()
+```
+
+De los confirmados por sexo ¿Cuál es la distribución de edad?
+
+```{r}
+confirmados <- df %>%
+  filter(RESULTADO == 'Positivo a SARS-CoV-2')
+mu <- confirmados %>% group_by(SEXO) %>% summarise(media = mean(EDAD))
+ggplot(confirmados,aes(x = EDAD, col = SEXO)) + geom_bar(stat = 'count', position = 'dodge') +
+   geom_vline(data = mu, aes(xintercept=media, color=SEXO),
+             linetype="dashed") + ## Ahora la hacemos bonita
+  theme_linedraw() + labs(
+    title = "Distribución de edad de los confirmados de COVID-19 por sexo",
+    subtitle = 'Elaborada como ejemplo para la práctica de \nla clase de Probabilidad y Estadística, UNAM FE',
+    caption = 'Elaboración propia con datos de la Secretaría de Salud',
+    x = 'Edad',
+    y = 'Distribución' )
+  
+```
+
+
+
+
