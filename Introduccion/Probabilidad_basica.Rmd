@@ -1,0 +1,107 @@
+---
+title: "Probabilidad basica"
+author: "Emiliano Villicaña"
+date: "3/2/2020"
+output: html_document
+---
+
+## Probabilidad básica.
+En este Markdown haremos un repaso de la probabilidad básica de R. Está pensado para que el usuario se familiarice con los métodos más básicos.
+
+# Probabilidad con dados
+Un ejemplo básico es el resultado de un dado donde el espacio de posibles casos es **{1,2,3,4,5,6}**
+
+```{r}
+sample(1:6, 1) 
+```
+
+Cada vez que ejecutemos el código dará un número diferente y cada número tiene la misma probabilidad de ser sacado.
+
+```{r}
+# Genera el vector de probabilidades
+probabilidad <- rep(1/6, 6) 
+
+# Gráfica simple de probabilidad 
+plot(probabilidad, 
+     main = "Probabilidad de la distribución",
+     xlab = "resultados") 
+```
+
+Cada evento tiene 1/6 o 16% de ser sacado.
+
+```{r}
+# Vector de probabilidad acumulada
+cum_probabilidad <- cumsum(probabilidad) 
+
+# gráfica 
+plot(cum_probabilidad, 
+     xlab = "resultados", 
+     main = "Distribución acumulada")
+```
+
+# Volado
+Otro ejercicio clásico es el de lanzar una moneda.
+Tienes 2 resultados posibles "Águila"(A) o "Sol"(S)
+```{r}
+sample(c("A", "S"), 1)
+```
+Sample toma una muestra que puede ser con y sin reemplazo, lo cual significa que si sale sol una vez, solamente puede salir águila en el siguiente volado. Intenta cambiar el número por 2 y 3. 
+
+Esta es una distribución de Bernoulli. la probabilidad está dada por 
+
+$$f(k)=P(k)=\begin{pmatrix}n\\ k \end{pmatrix} \cdot p^k \cdot
+(1-p)^{n-k}=\frac{n!}{k!(n-k)!} \cdot p^k \cdot (1-p)^{n-k}$$
+
+En R podemos utilizar >dbinom() que calcula la probabilidad $P(k|n, p)$ esto es la probabilidad de la distribución binomial dado los parámetros x (k), tamaño(n), y prob(p), utilizando esto calculamos la $P(k=5\vert n = 10, p = 0.5)$
+
+```{r}
+dbinom( x = 5,
+        size = 10,
+        prob = 0.5)
+```
+
+Lo que todo esto significa es que la probabilidad de sacar 5 soles o águilas en 10 volados es de 24.6%
+
+Ahora vamos a observar la $P(4 \leq k \leq 7)$
+
+```{r}
+sum(dbinom(x = 4:7, size = 10, prob = 0.5))
+```
+
+Alrededor del 77% de que tengamos 4,5,6 o 7 "éxitos" es decir que salga águila. 
+
+La distribución de probabilidad de una variable discreta no es más que un conjunto de posibles resultados que pueden ocurrir con una respectiva probabilidad. Regresando al ejemplo
+
+```{r}
+# Posibles resultados
+k <- 0:10
+```
+
+Vamos a ver la distribución.
+
+```{r}
+# Asignamos la probabilidad
+probabilidad <- dbinom(x = k,
+                      size = 10, 
+                      prob = 0.5)
+
+# plot the outcomes against their probabilities
+plot(x = k, 
+     y = probabilidad,
+     main = "Función de distribución de probabilidad") 
+```
+
+Veamos la probabilidad observada acumulada
+
+```{r}
+# Probabilidad acumulada
+prob <- pbinom(q = k, 
+               size = 10, 
+               prob = 0.5)
+
+# Gráfica
+plot(x = k, 
+     y = prob,
+     main = "Función de probabilidad acumulada") 
+```
+
